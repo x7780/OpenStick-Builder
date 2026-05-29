@@ -7,7 +7,7 @@ interface-name=usb0
 [ethernet]
 
 [ipv4]
-address1=192.168.5.1/24
+address1=192.168.42.1/24
 method=shared
 
 [ipv6]

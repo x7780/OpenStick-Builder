@@ -58,7 +58,7 @@ apk add --no-cache \
 "
 # setup alpine
 chroot ${CHROOT} ash -l -c "
-echo user:1::::/home/user:/bin/ash | newusers
+echo 'root:root' | chpasswd
 apk del shadow
 
 rc-update add devfs sysinit
@@ -80,7 +80,7 @@ rc-update add rmtfs default
 rc-update add modemmanager default
 rc-update add networkmanager default
 "
-echo 'user ALL=(ALL:ALL) NOPASSWD: ALL' > ${CHROOT}/etc/sudoers.d/user
+echo 'root ALL=(ALL:ALL) NOPASSWD: ALL' > ${CHROOT}/etc/sudoers.d/user
 
 # add udev rules
 cat << EOF > ${CHROOT}/etc/udev/rules.d/10-udc.rules

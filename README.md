@@ -129,18 +129,18 @@ Edit [`scripts/alpine_rootfs.sh`](scripts/alpine_rootfs.sh#L33) to add/remove pa
   | ----- | ---- |
   | ssid | Openstick |
   | password | openstick |
-  | ip addr | 192.168.4.1 |
+  | ip addr | 192.168.43.1 |
 
   | usb0 | |
   | ----- | ---- |
-  | ip addr | 192.168.5.1 |
+  | ip addr | 192.168.42.1 |
 
 - Default user
   
   | | |
   | ----- | ---- |
-  | username | user |
-  | password | 1 |
+  | username | root |
+  | password | root |
  
 - If your device is not based on **UZ801**, modify `/boot/extlinux/extlinux.conf` to use the correct devicetree
   ```shell
