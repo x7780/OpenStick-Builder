@@ -45,7 +45,7 @@ jobs:
 
       - name: 设置硬件设备树
         run: |
-          sed -i 's|fdt /dtbs/qcom/msm8916-.*\.dtb|fdt /dtbs/qcom/msm8916-${{ github.event.inputs.board }}.dtb|' \
+          sudo sed -i 's|fdt /dtbs/qcom/msm8916-.*\.dtb|fdt /dtbs/qcom/msm8916-${{ github.event.inputs.board }}.dtb|' \
             rootfs/boot/extlinux/extlinux.conf
           echo "extlinux.conf 已更新："
           cat rootfs/boot/extlinux/extlinux.conf
