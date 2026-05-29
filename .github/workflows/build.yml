@@ -77,10 +77,19 @@ jobs:
           cd files
           zip -r ../openstick-alpine-${{ github.event.inputs.board }}.zip .
           cd ..
+          ls -lh openstick-alpine-${{ github.event.inputs.board }}.zip
+
+      - name: 上传构建产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: openstick-alpine-${{ github.event.inputs.board }}
+          path: openstick-alpine-${{ github.event.inputs.board }}.zip
+          retention-days: 7
 
       - name: 发布 Release
         uses: softprops/action-gh-release@v2
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           tag_name: ${{ github.event.inputs.board }}-${{ github.run_number }}
           name: "OpenStick Alpine | ${{ github.event.inputs.board }} | #${{ github.run_number }}"
           body: |
@@ -95,10 +104,10 @@ jobs:
 
             ## 🔑 登录信息
 
-            | 项目 | 内容 |
-            |------|------|
-            | 用户名 | `root` |
-            | 密码 | `root` |
+            | 项目 | 账号 | 密码 |
+            |------|------|------|
+            | 用户名 | root | root |
+
 
             ## 🌐 网络信息
 
