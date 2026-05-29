@@ -22,5 +22,5 @@ tar xpf alpine_rootfs.tgz -C mnt --exclude='./boot/*' --exclude='./root/*' --exc
 umount mnt
 
 # create sparse android images 
-img2simg rootfs.raw files/alpine_rootfs.bin
+img2simg rootfs.raw files/rootfs.bin
 img2simg boot.raw files/boot.bin
