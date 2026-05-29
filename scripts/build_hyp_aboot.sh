@@ -11,7 +11,7 @@ make -C src/lk2nd LK2ND_BUNDLE_DTB="msm8916-512mb-mtp.dtb" LK2ND_COMPATIBLE="yim
 
 # test sign
 mkdir -p files
-src/qtestsign/qtestsign.py hyp src/qhypstub/qhypstub.elf \
+python3 src/qtestsign/qtestsign.py hyp src/qhypstub/qhypstub.elf \
     -o files/hyp.mbn
-src/qtestsign/qtestsign.py aboot src/lk2nd/build-lk1st-msm8916/emmc_appsboot.mbn \
+python3 src/qtestsign/qtestsign.py aboot src/lk2nd/build-lk1st-msm8916/emmc_appsboot.mbn \
     -o files/aboot.mbn
