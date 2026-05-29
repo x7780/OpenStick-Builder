@@ -28,6 +28,8 @@ jobs:
         run: |
           rm -f src/lk2nd/lk2nd/device/dts/include/dt-bindings
           ln -s ../../../include/dt-bindings src/lk2nd/lk2nd/device/dts/include/dt-bindings
+          rm -f src/lk2nd/lk2nd/include/dt-bindings/lk2nd/key-codes.h
+          ln -s ../../../../include/dev/key-codes.h src/lk2nd/lk2nd/include/dt-bindings/lk2nd/key-codes.h
 
       - name: 安装依赖
         run: sudo sh -e scripts/install_deps.sh
