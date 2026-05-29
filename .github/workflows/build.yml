@@ -47,10 +47,24 @@ jobs:
 
       - name: 设置硬件设备树
         run: |
+          # 更新 extlinux.conf 使用正确的设备树
           sudo sed -i 's|fdt /dtbs/qcom/msm8916-.*\.dtb|fdt /dtbs/qcom/msm8916-${{ github.event.inputs.board }}.dtb|' \
             rootfs/boot/extlinux/extlinux.conf
           echo "extlinux.conf 已更新："
           cat rootfs/boot/extlinux/extlinux.conf
+
+          # 只保留当前设备需要的 dtb，删除其余所有 msm8916 dtb
+          sudo find rootfs/boot/dtbs/qcom/ -name "*.dtb" \
+            ! -name "msm8916-${{ github.event.inputs.board }}.dtb" \
+            -delete
+          echo "保留的 dtb 文件："
+          ls rootfs/boot/dtbs/qcom/
+
+          # 重新打包 tgz，确保 build_images.sh 使用更新后的内容
+          sudo tar cpzf alpine_rootfs.tgz \
+            --exclude="root/*" \
+            --exclude="usr/bin/qemu-aarch64-static" \
+            -C rootfs .
 
       - name: 打包镜像
         run: sudo sh -e scripts/build_images.sh
