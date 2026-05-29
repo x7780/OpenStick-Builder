@@ -108,8 +108,8 @@
   fastboot flash rpm rpm.mbn
   fastboot flash sbl1 sbl1.mbn
   fastboot flash tz tz.mbn
-  fastboot flash boot boot.bin
-  fastboot flash rootfs alpine_rootfs.bin
+  fastboot flash boot boot.img
+  fastboot flash rootfs rootfs.img
   ```
 - 恢复原始分区
   ```shell

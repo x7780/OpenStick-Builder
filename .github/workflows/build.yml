@@ -56,7 +56,7 @@ jobs:
         run: sudo sh -e scripts/build_images.sh
 
       - name: 复制刷机脚本
-        run: cp -r 刷机脚本/. files/
+        run: sudo cp -r 刷机脚本/. files/
 
       - name: 打包为 zip
         run: |
