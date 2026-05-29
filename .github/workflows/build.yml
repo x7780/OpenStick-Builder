@@ -1,0 +1,53 @@
+name: 构建
+
+on:
+  workflow_dispatch:
+    inputs:
+      board:
+        description: '硬件型号'
+        required: true
+        default: 'yiming-uz801v3'
+        type: choice
+        options:
+          - yiming-uz801v3
+          - thwc-uf896
+          - thwc-ufi001c
+          - jz01-45-v33
+          - fy-mf800
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: 安装依赖
+        run: sudo sh -e scripts/install_deps.sh
+
+      - name: 编译 hyp 和 aboot 固件
+        run: sudo sh -e scripts/build_hyp_aboot.sh
+
+      - name: 提取 MSM8916 固件
+        run: sudo sh -e scripts/extract_fw.sh
+
+      - name: 创建根文件系统
+        run: sudo sh -e scripts/alpine_rootfs.sh
+
+      - name: 设置硬件设备树
+        run: |
+          sed -i 's|fdt /dtbs/qcom/msm8916-.*\.dtb|fdt /dtbs/qcom/msm8916-${{ github.event.inputs.board }}.dtb|' \
+            rootfs/boot/extlinux/extlinux.conf
+          echo "extlinux.conf 已更新："
+          cat rootfs/boot/extlinux/extlinux.conf
+
+      - name: 打包镜像
+        run: sudo sh -e scripts/build_images.sh
+
+      - name: 上传构建产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: openstick-alpine-${{ github.event.inputs.board }}
+          path: files/*

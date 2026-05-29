@@ -1,0 +1,48 @@
+// SPDX-License-Identifier: BSD-3-Clause
+#include <dt-bindings/arm/qcom,ids.h>
+#include <dt-bindings/lk2nd/gpio.h>
+#include <dt-bindings/lk2nd/key-codes.h>
+#include <config.h>
+
+/ {
+	/*
+	 * Some bootloaders device tree selection logic requires the model property
+	 * to be present in every device tree included in the boot image.
+	 * This is a hack to include the model property in all device trees
+	 * of affected platforms.
+	 */
+#if defined TARGET_MSM8952 || defined TARGET_MSM8953
+	model = "";
+#endif
+
+	lk2nd: lk2nd { };
+
+	lk2nd-hw {
+		/omit-if-no-ref/ tlmm: gpio-tlmm {
+			compatible = "lk2nd,gpio";
+
+			gpio-controller;
+			#gpio-cells = <2>;
+
+			phandle = <GPIO_DEV_PHANDLE(GPIOL_DEVICE_TLMM)>;
+		};
+
+		/omit-if-no-ref/ pmic: gpio-pmic {
+			compatible = "lk2nd,gpio";
+
+			gpio-controller;
+			#gpio-cells = <2>;
+
+			phandle = <GPIO_DEV_PHANDLE(GPIOL_DEVICE_PMIC)>;
+		};
+
+		/omit-if-no-ref/ pmic_pon: gpio-pmic-pon {
+			compatible = "lk2nd,gpio";
+
+			gpio-controller;
+			#gpio-cells = <2>;
+
+			phandle = <GPIO_DEV_PHANDLE(GPIOL_DEVICE_PMIC_PON)>;
+		};
+	};
+};

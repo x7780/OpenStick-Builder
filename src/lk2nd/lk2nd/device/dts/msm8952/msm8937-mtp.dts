@@ -1,0 +1,61 @@
+// SPDX-License-Identifier: BSD-3-Clause
+
+#include <skeleton64.dtsi>
+#include <lk2nd.dtsi>
+
+/ {
+	qcom,msm-id = <QCOM_ID_MSM8937 0x00>;
+	qcom,board-id = <QCOM_BOARD_ID_MTP 0x00>;
+};
+
+&lk2nd {
+	cedric {
+		model = "Motorola Moto G5 (cedric)";
+		compatible = "motorola,cedric";
+		lk2nd,match-device = "cedric";
+
+		lk2nd,dtb-files = "msm8937-motorola-cedric";
+	};
+
+	l38011 {
+		model = "Lenovo K5 Play (l38011)";
+		compatible = "lenovo,l38011";
+		lk2nd,match-panel;
+
+		lk2nd,dtb-files = "msm8937-lenovo-l38011";
+
+		panel {
+			compatible = "lenovo,l38011-panel";
+
+			qcom,mdss_dsi_nt36525_innolux_video {
+				compatible = "lenovo,innolux-nt36525";
+			};
+		};
+	};
+
+	marmite {
+		model = "Wileyfox Swift 2";
+		compatible = "wileyfox,marmite";
+		lk2nd,match-bootloader = "marmite*";
+	};
+
+	montana {
+		model = "Motorola Moto G5S (montana)";
+		compatible = "motorola,montana";
+		lk2nd,match-device = "montana";
+
+		lk2nd,dtb-files = "msm8937-motorola-montana";
+
+		lk2nd,match-panel;
+		panel {
+			compatible = "motorola,montana-panel", "lk2nd,panel";
+
+			qcom,mdss_dsi_mot_tianma_521_1080p_video_v0 {
+				compatible = "motorola,montana-r63350-tianma";
+			};
+			qcom,mdss_dsi_mot_inx_521_1080p_video_v0 {
+				compatible = "motorola,montana-nt35596-inx";
+			};
+		};
+	};
+};
