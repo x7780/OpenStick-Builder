@@ -24,6 +24,11 @@ jobs:
         with:
           submodules: true
 
+      - name: 修复 lk2nd 符号链接
+        run: |
+          rm -f src/lk2nd/lk2nd/device/dts/include/dt-bindings
+          ln -s ../../../include/dt-bindings src/lk2nd/lk2nd/device/dts/include/dt-bindings
+
       - name: 安装依赖
         run: sudo sh -e scripts/install_deps.sh
 
