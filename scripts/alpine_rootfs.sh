@@ -75,6 +75,7 @@ rc-update add bootmisc boot
 rc-update add mount-ro shutdown
 rc-update add killprocs shutdown
 rc-update add savecache shutdown
+rc-update add swap boot
 rc-update add dropbear default
 rc-update add rmtfs default
 rc-update add modemmanager default
@@ -109,8 +110,14 @@ cp configs/extlinux.conf ${CHROOT}/boot/extlinux
 # copy custom dtb's
 cp dtbs/* ${CHROOT}/boot/dtbs/qcom
 
+# create 200MB swapfile
+dd if=/dev/zero of=${CHROOT}/swapfile bs=1M count=200
+chmod 600 ${CHROOT}/swapfile
+mkswap ${CHROOT}/swapfile
+
 # update fstab
 echo "/dev/mmcblk0p14\t/boot\text2\tdefaults\t0 2" > ${CHROOT}/etc/fstab
+echo "/swapfile\tnone\tswap\tsw\t0 0" >> ${CHROOT}/etc/fstab
 
 # copy gadget-tool templates
 cp -a configs/templates ${CHROOT}/etc/gt
