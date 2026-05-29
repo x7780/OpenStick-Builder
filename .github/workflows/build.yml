@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       board:
-        description: '硬件型号（yiming-uz801v3 / thwc-uf896=UF896 / thwc-ufi001c=UFIxxx / jz01-45-v33=JZxxx / fy-mf800=MF800 / generic-m9s=M9S / generic-mf68e=MF68E / generic-uf02=UF02 / gexing-sp970=SP970 / gexing-sp970v10=SP970V10 / gexing-sp970v11=SP970V11 / thwc-jz02v10=JZ02V10 / thwc-qrzl903=QRZL903 / thwc-w001=W001 / ufi-mf32=MF32 / xinxun-wf2=WF2）'
+        description: '选择硬件型号'
         required: true
         default: 'thwc-ufi001c'
         type: choice
