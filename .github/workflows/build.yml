@@ -83,7 +83,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: openstick-alpine-${{ github.event.inputs.board }}
-          path: openstick-alpine-${{ github.event.inputs.board }}.zip
+          path: files/
           retention-days: 7
 
       - name: 发布 Release
