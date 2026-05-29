@@ -18,6 +18,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
@@ -53,8 +55,56 @@ jobs:
       - name: 打包镜像
         run: sudo sh -e scripts/build_images.sh
 
-      - name: 上传构建产物
-        uses: actions/upload-artifact@v4
+      - name: 复制刷机脚本
+        run: cp -r 刷机脚本/. files/
+
+      - name: 打包为 zip
+        run: |
+          cd files
+          zip -r ../openstick-alpine-${{ github.event.inputs.board }}.zip .
+          cd ..
+
+      - name: 发布 Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: openstick-alpine-${{ github.event.inputs.board }}
-          path: files/*
+          tag_name: ${{ github.event.inputs.board }}-${{ github.run_number }}
+          name: "OpenStick Alpine | ${{ github.event.inputs.board }} | #${{ github.run_number }}"
+          body: |
+            ## 📦 OpenStick Alpine Linux 固件
+
+            | 项目 | 内容 |
+            |------|------|
+            | 🔧 硬件型号 | `${{ github.event.inputs.board }}` |
+            |  构建编号 | #${{ github.run_number }} |
+            | 🐧 系统 | Alpine Linux v3.20 |
+            | 📡 内核 | postmarketos-qcom-msm8916 |
+
+            ## 🔑 登录信息
+
+            | 项目 | 内容 |
+            |------|------|
+            | 用户名 | `root` |
+            | 密码 | `root` |
+
+            ## 🌐 网络信息
+
+            **USB 网络（数据线连接电脑）**
+
+            | 项目 | 内容 |
+            |------|------|
+            | 设备 IP | `192.168.42.1` |
+            | SSH 连接 | `ssh root@192.168.42.1` |
+
+            **WiFi 热点**
+
+            | 项目 | 内容 |
+            |------|------|
+            | SSID | `Openstick` |
+            | 密码 | `openstick` |
+            | 设备 IP | `192.168.43.1` |
+            | SSH 连接 | `ssh root@192.168.43.1` |
+
+            > ⚠️ 刷机有风险，请确认硬件型号与本固件一致再操作！
+          files: openstick-alpine-${{ github.event.inputs.board }}.zip
+          draft: false
+          prerelease: false
