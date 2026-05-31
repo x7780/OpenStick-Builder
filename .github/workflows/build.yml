@@ -9,10 +9,6 @@ on:
         default: 'thwc-ufi001c'
         type: choice
         options:
-          - yiming-uz801v3
-          - thwc-uf896
-          - thwc-ufi001c
-          - jz01-45-v33
           - fy-mf800
           - generic-m9s
           - generic-mf68e
@@ -20,11 +16,18 @@ on:
           - gexing-sp970
           - gexing-sp970v10
           - gexing-sp970v11
+          - jz01-45-v33
           - thwc-jz02v10
           - thwc-qrzl903
+          - thwc-uf896
+          - thwc-ufi001b
+          - thwc-ufi001c
+          - thwc-ufi003
+          - thwc-ufi103s
           - thwc-w001
           - ufi-mf32
           - xinxun-wf2
+          - yiming-uz801v3
 
 jobs:
   build:
@@ -102,13 +105,13 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag_name: ${{ github.event.inputs.board }}-${{ github.run_number }}
-          name: "OpenStick Alpine | ${{ github.event.inputs.board }} (${{ github.event.inputs.board == 'thwc-uf896' && 'UF896' || github.event.inputs.board == 'thwc-ufi001c' && 'UFIxxx' || github.event.inputs.board == 'jz01-45-v33' && 'JZxxx' || github.event.inputs.board == 'fy-mf800' && 'MF800' || github.event.inputs.board == 'generic-m9s' && 'M9S' || github.event.inputs.board == 'generic-mf68e' && 'MF68E' || github.event.inputs.board == 'generic-uf02' && 'UF02' || github.event.inputs.board == 'gexing-sp970' && 'SP970' || github.event.inputs.board == 'gexing-sp970v10' && 'SP970V10' || github.event.inputs.board == 'gexing-sp970v11' && 'SP970V11' || github.event.inputs.board == 'thwc-jz02v10' && 'JZ02V10' || github.event.inputs.board == 'thwc-qrzl903' && 'QRZL903' || github.event.inputs.board == 'thwc-w001' && 'W001' || github.event.inputs.board == 'ufi-mf32' && 'MF32' || github.event.inputs.board == 'xinxun-wf2' && 'WF2' || github.event.inputs.board }}) | #${{ github.run_number }}"
+          name: "OpenStick Alpine | ${{ github.event.inputs.board }} (${{ github.event.inputs.board == 'thwc-uf896' && 'UF896' || github.event.inputs.board == 'thwc-ufi001c' && 'UFIxxx' || github.event.inputs.board == 'jz01-45-v33' && 'JZxxx' || github.event.inputs.board == 'fy-mf800' && 'MF800' || github.event.inputs.board == 'generic-m9s' && 'M9S' || github.event.inputs.board == 'generic-mf68e' && 'MF68E' || github.event.inputs.board == 'generic-uf02' && 'UF02' || github.event.inputs.board == 'gexing-sp970' && 'SP970' || github.event.inputs.board == 'gexing-sp970v10' && 'SP970V10' || github.event.inputs.board == 'gexing-sp970v11' && 'SP970V11' || github.event.inputs.board == 'thwc-jz02v10' && 'JZ02V10' || github.event.inputs.board == 'thwc-qrzl903' && 'QRZL903' || github.event.inputs.board == 'thwc-ufi001b' && 'UFI001B' || github.event.inputs.board == 'thwc-ufi003' && 'UFI003' || github.event.inputs.board == 'thwc-ufi103s' && 'UFI103S' || github.event.inputs.board == 'thwc-w001' && 'W001' || github.event.inputs.board == 'ufi-mf32' && 'MF32' || github.event.inputs.board == 'xinxun-wf2' && 'WF2' || github.event.inputs.board }}) | #${{ github.run_number }}"
           body: |
             ## 📦 OpenStick Alpine Linux 固件
 
             | 项目 | 内容 |
             |------|------|
-            | 🔧 硬件型号 | `${{ github.event.inputs.board }}` (${{ github.event.inputs.board == 'thwc-uf896' && 'UF896' || github.event.inputs.board == 'thwc-ufi001c' && 'UFIxxx' || github.event.inputs.board == 'jz01-45-v33' && 'JZxxx' || github.event.inputs.board == 'fy-mf800' && 'MF800' || github.event.inputs.board == 'generic-m9s' && 'M9S' || github.event.inputs.board == 'generic-mf68e' && 'MF68E' || github.event.inputs.board == 'generic-uf02' && 'UF02' || github.event.inputs.board == 'gexing-sp970' && 'SP970' || github.event.inputs.board == 'gexing-sp970v10' && 'SP970V10' || github.event.inputs.board == 'gexing-sp970v11' && 'SP970V11' || github.event.inputs.board == 'thwc-jz02v10' && 'JZ02V10' || github.event.inputs.board == 'thwc-qrzl903' && 'QRZL903' || github.event.inputs.board == 'thwc-w001' && 'W001' || github.event.inputs.board == 'ufi-mf32' && 'MF32' || github.event.inputs.board == 'xinxun-wf2' && 'WF2' || github.event.inputs.board }}) |
+            | 🔧 硬件型号 | `${{ github.event.inputs.board }}` (${{ github.event.inputs.board == 'thwc-uf896' && 'UF896' || github.event.inputs.board == 'thwc-ufi001c' && 'UFIxxx' || github.event.inputs.board == 'jz01-45-v33' && 'JZxxx' || github.event.inputs.board == 'fy-mf800' && 'MF800' || github.event.inputs.board == 'generic-m9s' && 'M9S' || github.event.inputs.board == 'generic-mf68e' && 'MF68E' || github.event.inputs.board == 'generic-uf02' && 'UF02' || github.event.inputs.board == 'gexing-sp970' && 'SP970' || github.event.inputs.board == 'gexing-sp970v10' && 'SP970V10' || github.event.inputs.board == 'gexing-sp970v11' && 'SP970V11' || github.event.inputs.board == 'thwc-jz02v10' && 'JZ02V10' || github.event.inputs.board == 'thwc-qrzl903' && 'QRZL903' || github.event.inputs.board == 'thwc-ufi001b' && 'UFI001B' || github.event.inputs.board == 'thwc-ufi003' && 'UFI003' || github.event.inputs.board == 'thwc-ufi103s' && 'UFI103S' || github.event.inputs.board == 'thwc-w001' && 'W001' || github.event.inputs.board == 'ufi-mf32' && 'MF32' || github.event.inputs.board == 'xinxun-wf2' && 'WF2' || github.event.inputs.board }}) |
             |  构建编号 | #${{ github.run_number }} |
             | 🐧 系统 | Alpine Linux v3.20 |
             | 📡 内核 | postmarketos-qcom-msm8916 |
