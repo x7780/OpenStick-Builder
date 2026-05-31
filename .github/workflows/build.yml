@@ -127,7 +127,6 @@ jobs:
             | 项目 | 内容 |
             |------|------|
             | 设备 IP | `192.168.42.1` |
-            | SSH 连接 | `ssh root@192.168.42.1` |
 
             **WiFi 热点**
 
@@ -136,7 +135,6 @@ jobs:
             | SSID | `Openstick` |
             | 密码 | `openstick` |
             | 设备 IP | `192.168.43.1` |
-            | SSH 连接 | `ssh root@192.168.43.1` |
 
             > ⚠️ 刷机有风险，请确认硬件型号与本固件一致再操作！
           files: openstick-alpine-${{ github.event.inputs.board }}.zip

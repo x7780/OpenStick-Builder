@@ -1,0 +1,62 @@
+// SPDX-License-Identifier: GPL-2.0-only
+// UFI103S - 硬件与 UFI001C 相同，GPIO 布局一致
+// 如发现差异可在此文件单独修改
+
+/dts-v1/;
+
+#include "msm8916-ufi.dtsi"
+
+/ {
+	model = "ufi-103s 4G Modem Stick";
+	compatible = "thwc,ufi103s", "qcom,msm8916";
+	leds: leds {
+		sim_sel {
+			label = "sim:sel";
+			gpios = <&tlmm 2 GPIO_ACTIVE_HIGH>;
+			default-state = "on";
+		};
+
+		sim_en {
+			label = "sim:en";
+			gpios = <&tlmm 1 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+		sim_sel2 {
+			label = "sim:sel2";
+			gpios = <&tlmm 0 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+		sim_en2 {
+			label = "sim:en2";
+			gpios = <&tlmm 3 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+	};
+};
+
+&button_restart {
+	gpios = <&tlmm 37 GPIO_ACTIVE_HIGH>;
+};
+
+&led_r {
+	gpios = <&tlmm 22 GPIO_ACTIVE_HIGH>;
+};
+
+&led_g {
+	gpios = <&tlmm 21 GPIO_ACTIVE_HIGH>;
+};
+
+&led_b {
+	gpios = <&tlmm 20 GPIO_ACTIVE_HIGH>;
+};
+
+&button_default {
+	pins = "gpio37";
+	bias-pull-down;
+};
+
+&gpio_leds_default {
+	pins = "gpio0","gpio1","gpio2","gpio3","gpio20", "gpio21", "gpio22";
+};
